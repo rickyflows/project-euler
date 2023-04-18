@@ -1,0 +1,4 @@
+#+title: README
+
+Some solutions to Project Euler problems. They are not optimized.
+I'm going in order, so if a script is missing I likely solved that problem by hand.
