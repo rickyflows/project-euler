@@ -12,7 +12,6 @@ for i, c in enumerate(coins):
 for i, c in enumerate(coins[1:], start=1):
     for p in range(c, limit):
         k = 0
-        s = 0
         while p - k * c >= 0:
             memo[i][p] += memo[i-1][p-k*c]
             k += 1
