@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-import numba
+from numba import njit
 import numpy as np
 
-@numba.njit
+@njit
 def integer_anagram(n1, n2):
     counter = np.zeros(10)
     while n1:
@@ -16,13 +16,13 @@ def integer_anagram(n1, n2):
             return False
     return True
 
-@numba.njit
+@njit
 def gcd(a, b):
     if b == 0:
         return a
     return gcd(b, a % b)
 
-@numba.njit
+@njit
 def generate_primitive_pythagorean_triplets(P):
     """ Generate all primitive pythagorean triplets
     with a + b + c <= P """
@@ -39,7 +39,7 @@ def generate_primitive_pythagorean_triplets(P):
                 primitives.append(triplet)
     return primitives
 
-@numba.njit
+@njit
 def generate_pythagorean_triplets(P):
     """ Generate all pythagorean triplets with a + b + c <= P """
     triplets = []
@@ -50,3 +50,15 @@ def generate_pythagorean_triplets(P):
             triplets.append(k * p)
             k += 1
     return triplets
+
+
+@njit
+def coin_change(target: int, coins: np.ndarray) -> int:
+    ways = np.zeros(target + 1, dtype=np.int64)
+    ways[::coins[0]] = 1
+    for c in coins[1:]:
+        if c > target:
+            break
+        for j in range(c, target + 1):
+            ways[j] += ways[j - c]
+    return ways[target]
