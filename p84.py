@@ -65,6 +65,7 @@ for _ in range(n_turns):
         doubles_counter += 1
         if doubles_counter == 3:
             pos = JAIL
+            doubles_counter = 0
             continue
     else:
         doubles_counter = 0
@@ -83,6 +84,12 @@ for _ in range(n_turns):
             pos = card
         elif isinstance(card, str):
             pos = handle_chance_strs(card, pos)
+            # if you go back 3 you might land on community chest
+            if pos in community_chest_spaces:
+                card = next(cc_iter)
+                if isinstance(card, int):
+                    pos = card
+
 
 print([i for i, _ in sorted(enumerate(freq), key=lambda x: x[1], reverse=True)][:3])
 
