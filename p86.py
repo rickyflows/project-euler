@@ -5,10 +5,7 @@ from numba import njit
 @njit
 def helper(cuboid):
     a, b, c, = cuboid
-    d1 = (b + c)**2 + a**2
-    d2 = (a + c)**2 + b**2
-    d3 = (a + b)**2 + c**2
-    d = min([d1, d2, d3])
+    d = (a + b)**2 + c**2
     return int(d**0.5)**2 == d
 
 def main():
