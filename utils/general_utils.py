@@ -3,6 +3,13 @@ from numba import njit
 import numpy as np
 
 @njit
+def get_digits(n):
+    digits = np.zeros(len(str(n)), dtype=np.int32)
+    for i in range(len(digits) - 1, -1, -1):
+        n, digits[i] = divmod(n, 10)
+    return digits
+
+@njit
 def integer_anagram(n1, n2):
     counter = np.zeros(10)
     while n1:
