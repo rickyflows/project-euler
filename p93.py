@@ -41,4 +41,9 @@ def my_eval(s):
         return 0
 
 if __name__=='__main__':
+    # Notes:
+    # - Use of eval makes this hard to optimize, https://stackoverflow.com/a/69423453
+    #   - An alternative is reverse polish notation with a stack
+    # - 92% of the work is happening in one line
+    # - Reverse polish notation also obviates the parenthesization problem
     main()
